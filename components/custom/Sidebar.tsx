@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { PanelLeft, LayoutDashboard, FileText, Users, Truck, ChevronLeft, Workflow } from "lucide-react";
+import { PanelLeft, LayoutDashboard, FileText, Users, FolderKanban, ChevronLeft, Workflow } from "lucide-react";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -12,7 +12,7 @@ const navItems = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/quotations", label: "Quotations", icon: FileText },
   { href: "/clients", label: "Clients", icon: Users },
-  { href: "/suppliers", label: "Suppliers", icon: Truck },
+  { href: "/projects", label: "Projects", icon: FolderKanban },
 ];
 
 type SidebarContentProps = {
@@ -42,7 +42,7 @@ function SidebarContent({ collapsed = false, mobile = false, onNavigate }: Sideb
           {!collapsed || mobile ? (
             <div className="leading-none">
               <p className="text-md font-semibold tracking-tight">
-                Estimation Workspace
+                Estimation Data Analytics
               </p>
             </div>
           ) : null}
@@ -87,7 +87,7 @@ export default function Sidebar() {
     <>
       <aside
         className={cn(
-          "hidden border-r border-border/60 bg-background/80 backdrop-blur xl:flex xl:flex-col",
+          "hidden h-screen shrink-0 border-r border-border/60 bg-background xl:sticky xl:top-0 xl:flex xl:flex-col",
           collapsed ? "xl:w-22" : "xl:w-70"
         )}
       >
@@ -100,7 +100,7 @@ export default function Sidebar() {
         <SidebarContent collapsed={collapsed} />
       </aside>
 
-      <div className="flex h-16 items-center border-b border-border/60 px-4 xl:hidden">
+      <div className="sticky top-0 z-50 flex h-15 items-center border-b border-border/60 bg-background/80 px-4 backdrop-blur-xl xl:hidden">
         <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
           <SheetTrigger asChild>
             <Button type="button" variant="ghost" size="icon" className="rounded-xl">

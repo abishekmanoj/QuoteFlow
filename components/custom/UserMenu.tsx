@@ -5,8 +5,9 @@ import { Settings, LogOut, Sun, Moon, Monitor } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { useTheme } from "next-themes";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger } from "@/components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuPortal } from "@/components/ui/dropdown-menu";
 import { toast } from "sonner";
+
 
 type UserMenuProps = {
   initials: string;
@@ -45,7 +46,7 @@ export default function UserMenu({ initials, fullName, email }: UserMenuProps) {
         </button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent align="end" className="w-72 rounded-2xl p-2">
+      <DropdownMenuContent align="end" className="w-72 rounded-2xl p-2 bg-white/60 dark:bg-white/5 backdrop-blur-xl">
         
         <DropdownMenuLabel className="rounded-xl px-3 py-3">
           <div className="flex flex-col">
@@ -64,31 +65,41 @@ export default function UserMenu({ initials, fullName, email }: UserMenuProps) {
         </DropdownMenuItem>
 
         <DropdownMenuSub>
-          <DropdownMenuSubTrigger className="cursor-pointer rounded-xl px-3 py-2.5">
-            <Sun className="mr-2 h-4 w-4" />
-            Theme
-          </DropdownMenuSubTrigger>
+  <DropdownMenuSubTrigger className="cursor-pointer rounded-xl px-3 py-2.5 transition hover:bg-white/40 dark:hover:bg-white/10">
+    <Sun className="mr-2 h-4 w-4" />
+    Theme
+  </DropdownMenuSubTrigger>
 
-          <DropdownMenuSubContent className="w-44 rounded-xl p-2">
+  <DropdownMenuPortal>
+    <DropdownMenuSubContent
+      sideOffset={8}
+      alignOffset={-4}
+      className="w-44 rounded-xl p-2 
+      bg-white/60 dark:bg-white/5 
+      backdrop-blur-xl 
+      border border-white/20 dark:border-white/10 
+      shadow-xl"
+    >
+      <DropdownMenuItem onClick={() => setTheme("light")} className="cursor-pointer rounded-lg px-3 py-2.5 transition hover:bg-white/40 dark:hover:bg-white/10">
+        <Sun className="mr-2 h-4 w-4" />
+        Light
+      </DropdownMenuItem>
 
-            <DropdownMenuItem onClick={() => setTheme("light")} className="cursor-pointer rounded-lg px-3 py-2.5">
-              <Sun className="mr-2 h-4 w-4" />
-              Light
-            </DropdownMenuItem>
+      <DropdownMenuItem onClick={() => setTheme("dark")} className="cursor-pointer rounded-lg px-3 py-2.5 transition hover:bg-white/40 dark:hover:bg-white/10">
+        <Moon className="mr-2 h-4 w-4" />
+        Dark
+      </DropdownMenuItem>
 
-            <DropdownMenuItem onClick={() => setTheme("dark")} className="cursor-pointer rounded-lg px-3 py-2.5">
-              <Moon className="mr-2 h-4 w-4" />
-              Dark
-            </DropdownMenuItem>
-
-            <DropdownMenuItem onClick={() => setTheme("system")} className="cursor-pointer rounded-lg px-3 py-2.5">
-              <Monitor className="mr-2 h-4 w-4" />
-              System
-            </DropdownMenuItem>
-
-          </DropdownMenuSubContent>
-
-        </DropdownMenuSub>
+      <DropdownMenuItem
+        onClick={() => setTheme("system")}
+        className="cursor-pointer rounded-lg px-3 py-2.5 transition hover:bg-white/40 dark:hover:bg-white/10"
+      >
+        <Monitor className="mr-2 h-4 w-4" />
+        System
+      </DropdownMenuItem>
+    </DropdownMenuSubContent>
+  </DropdownMenuPortal>
+</DropdownMenuSub>
 
         <DropdownMenuSeparator className="my-2" />
 

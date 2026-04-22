@@ -26,7 +26,7 @@ export default async function Navbar() {
   return (
     <header className="sticky top-0 z-40 flex h-15 items-center justify-between border-b border-border/60 bg-background/80 px-4 backdrop-blur-xl sm:px-6">
       <h1 className="text-lg font-semibold tracking-tight">
-        <span className="bg-linear-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+        <span className="bg-linear-to-r from-primary to-primary/60 bg-clip-text text-transparent pointer-events-none">
           QUOTEFLOW
         </span>
       </h1>
