@@ -8,7 +8,7 @@ import { ClientRevenueContributionItem } from "@/lib/dummy_data/clients";
 
 type Props = { data: ClientRevenueContributionItem[] };
 
-const cardClass = "h-full rounded-2xl border border-white/20 bg-white/30 shadow-xl backdrop-blur-2xl dark:border-white/10 dark:bg-white/10";
+const cardClass = "h-full rounded-2xl border border-white/10 bg-white/40 dark:bg-white/5 backdrop-blur-xl shadow-md";
 
 /* Hardcoded Premium Palette */
 const COLORS = [

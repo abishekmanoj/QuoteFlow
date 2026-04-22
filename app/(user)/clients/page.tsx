@@ -1,7 +1,12 @@
+import { AllClientsTable } from "@/components/custom/data/clients/AllClientsTable";
+import { ClientActivityTable } from "@/components/custom/data/clients/ClientActivityTable";
+import { ClientRevenueBarChart } from "@/components/custom/data/clients/ClientRevenueBarChart";
 import { ClientRevenueContributionChart } from "@/components/custom/data/clients/ClientRevenueContributionChart";
 import { ClientsGrowthTrendChart } from "@/components/custom/data/clients/ClientsGrowthTrendChart";
+import { ClientWinRateTable } from "@/components/custom/data/clients/ClientWinRateTable";
 import { KPICard } from "@/components/custom/data/clients/KPICard";
-import { clientGrowthTrendData, clientRevenueContributionData, clientsPageKpiData } from "@/lib/dummy_data/clients";
+import { TopClientsByFrequencyChart } from "@/components/custom/data/clients/TopClientsByFrequencyChart";
+import { clientActivityData, clientGrowthTrendData, clientRevenueBarData, clientRevenueContributionData, clientsPageKpiData, clientsTableData, clientWinRateData, topClientsByFrequencyData } from "@/lib/dummy_data/clients";
 
 export default function ClientsPage() {
   return (
@@ -35,31 +40,31 @@ export default function ClientsPage() {
       {/* ROW 2 */}
       <section className="grid grid-cols-1 gap-4">
         <div className="h-full">
-          {/* <ClientRevenueBarChart data={clientRevenueBarData} /> */}
+          <ClientRevenueBarChart data={clientRevenueBarData} />
         </div>
       </section>
 
       {/* ROW 3 */}
       <section className="grid grid-cols-1 gap-4">
         <div className="h-full">
-          {/* <AllClientsTable data={clientsTableData} /> */}
+          <AllClientsTable data={clientsTableData} />
         </div>
       </section>
 
       {/* ROW 4 */}
       <section className="grid grid-cols-1 gap-4 2xl:grid-cols-2">
         <div className="h-full">
-          {/* <ClientActivityTable data={clientActivityData} /> */}
+          <ClientActivityTable data={clientActivityData} />
         </div>
         <div className="h-full">
-          {/* <ClientWinRateTable data={clientWinRateData} /> */}
+          <ClientWinRateTable data={clientWinRateData} />
         </div>
       </section>
 
       {/* ROW 5 */}
       <section className="grid grid-cols-1 gap-4">
         <div className="h-full">
-          {/* <TopClientsByFrequencyChart data={topClientsByFrequencyData} /> */}
+          <TopClientsByFrequencyChart data={topClientsByFrequencyData} />
         </div>
       </section>
 
