@@ -12,8 +12,11 @@ import { Input } from "@/components/ui/input";
 import { Field, FieldContent, FieldError, FieldGroup, FieldLabel, FieldSet } from "@/components/ui/field";
 import { ForgotPasswordValues, forgotPasswordSchema } from "@/lib/validations/auth";
 
-export default function ForgotPasswordPage() {
+function getOrigin() {
+  return window.location.origin;
+}
 
+export default function ForgotPasswordPage() {
   const supabase = React.useMemo(() => createClient(), []);
   const [isLoading, setIsLoading] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
@@ -32,14 +35,15 @@ export default function ForgotPasswordPage() {
       setSuccessMessage(null);
 
       const { error } = await supabase.auth.resetPasswordForEmail(values.email, {
-        redirectTo: `${process.env.APP_URL}/auth/reset-password`,
+        redirectTo: `${getOrigin()}/auth/confirm?next=/auth/reset-password`,
       });
 
       if (error) {
         setErrorMessage(error.message);
         return;
       }
-      setSuccessMessage("We’ve sent you a password reset link. Please check your inbox.");
+
+      setSuccessMessage("We've sent you a password reset link. Please check your inbox.");
       form.reset();
     } catch {
       setErrorMessage("Something went wrong. Please try again.");
@@ -55,7 +59,7 @@ export default function ForgotPasswordPage() {
           <div className="space-y-1.5">
             <CardTitle className="text-2xl font-semibold tracking-tight">Forgot Password</CardTitle>
             <CardDescription className="text-sm leading-6">
-              Enter your email address and we’ll send you a link to reset your password.
+              Enter your email address and we&apos;ll send you a link to reset your password.
             </CardDescription>
           </div>
         </CardHeader>

@@ -20,6 +20,10 @@ import { toast } from "sonner";
 
 type AuthTab = "signin" | "signup";
 
+function getOrigin() {
+    return window.location.origin;
+}
+
 export default function AuthPage() {
 
     const [tab, setTab] = useState<AuthTab>("signin");
@@ -79,7 +83,7 @@ export default function AuthPage() {
                 email: values.email,
                 password: values.password,
                 options: {
-                    emailRedirectTo: `${process.env.APP_URL}/auth/callback`,
+                    emailRedirectTo: `${getOrigin()}/auth/confirm`,
                     data: {
                         name: values.name,
                     },

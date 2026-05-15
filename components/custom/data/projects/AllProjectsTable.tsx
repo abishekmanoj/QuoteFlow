@@ -113,7 +113,7 @@ export function AllProjectsTable({ data }: Props) {
 
       <CardContent className="pt-2">
         <div className="hidden overflow-x-auto xl:block">
-          <table className="w-full min-w-[980px] text-sm">
+          <table className="w-full min-w-245 text-sm">
             <thead>
               <tr className="border-b border-white/10 text-left">
                 <th className="px-3 py-3 font-medium text-muted-foreground">
